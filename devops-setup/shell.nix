@@ -14,5 +14,6 @@
     crossplane-cli
     kubernetes-helm
     docker-compose
+    terraform
   ];
 }
