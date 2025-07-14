@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: color-app
+  namespace: base-namespace
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%        # How many extra pods can be created during update
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: color-app
+  template:
+    metadata:
+      labels:
+        app: color-app
+    spec:
+      containers:
+      - name: web
+        image: color-app:v1.0.1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: BG_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: color-config
+              key: BG_COLOR

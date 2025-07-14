@@ -1,0 +1,34 @@
+movie-magic/
+├── frontend/                  # Spring Boot App (from Initializr)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/moviemagic/
+│   │   │   │   ├── MovieMagicApplication.java  # Main class
+│   │   │   │   └── MovieController.java        # Your controller
+│   │   │   ├── resources/
+│   │   │   │   ├── static/
+│   │   │   │   │   └── css/
+│   │   │   │   │       └── style.css
+│   │   │   │   ├── templates/
+│   │   │   │   │   └── index.html
+│   │   │   │   └── application.properties
+│   │   │   └── Dockerfile
+│   │   └── test/              # Tests
+│   └── pom.xml                # Maven config
+├── backend/                   # Python Flask App
+│   ├── app.py
+│   ├── requirements.txt
+│   └── Dockerfile
+├── database/                  # MySQL
+│   ├── init.sql
+│   └── Dockerfile
+├── docker-compose.yml
+└── kustomize/                 # Kubernetes configs
+    ├── base/
+    │   ├── deployment.yaml
+    │   ├── service.yaml
+    │   ├── pvc.yaml
+    │   └── kustomization.yaml
+    └── overlays/
+        └── prod/
+            └── kustomization.yaml

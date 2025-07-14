@@ -1,0 +1,2 @@
+# dependencies
+flask==2.3.2  # Pinned latest stable version

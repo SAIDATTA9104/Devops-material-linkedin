@@ -1,0 +1,52 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8080:8080"
+    environment:
+      BACKEND_URL: "http://backend:5000"
+    depends_on:
+      - backend
+
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"    
+    environment:
+      DB_HOST: "mysql"
+      DB_USER: "root"
+      DB_PASSWORD: "moviepass"
+      DB_NAME: "moviemagic"
+      REDIS_HOST: "redis"
+    depends_on:
+      - mysql
+      - redis
+
+
+  redis:
+    image: "redis:7.2-alpine"
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis-data:/data
+
+  mysql:
+    build:
+      context: ./database
+    environment:
+      MYSQL_ROOT_PASSWORD: "moviepass"
+      MYSQL_DATABASE: "moviemagic"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+  redis-data:
+
+# networks:
+#   my-app-network:
+#     driver: bridge

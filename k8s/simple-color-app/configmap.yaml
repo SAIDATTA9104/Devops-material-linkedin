@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: color-config
+  namespace: base-namespace
+data:
+  BG_COLOR: "blue"  # Change this value to update the color

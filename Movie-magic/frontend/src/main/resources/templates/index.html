@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Magic 🎬</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Movie Magic ✨</h1>
+        <form method="post" action="/search">
+            <input type="text" name="title" placeholder="Search Bollywood movies (2000-2024)">
+            <button type="submit">🔍 Search</button>
+        </form>
+        <div th:if="${result}" class="result" th:utext="${result}"></div>
+    </div>
+</body>
+</html>
